@@ -11,7 +11,7 @@ getRowByRollNo() {
 getDept() {
     # Only the first 4 characters of the rollno are required
     # to identify the department
-    local deptid=$(cut --characters=1-4 <<< $1)
+    local deptid=$(cut --characters=1-4 <<< "$1")
     case $deptid in
         1061) echo "CSE" ;;
         1021) echo "Chem" ;;
@@ -23,7 +23,7 @@ getDept() {
         1121) echo "MME" ;;
         1141) echo "Prod" ;;
         1011) echo "Arch" ;;
-        *) echo "Invalid Dept ID" ;;
+        *) echo "Unknown" ;;
     esac
 }
 
@@ -50,4 +50,10 @@ getMonth() {
         11) echo "Nov" ;;
         12) echo "Dec" ;;
     esac
+}
+
+skipFirstLine() {
+    # Skips the first line of the input file
+    # and returns the rest of the file
+    tail -n +2 $1
 }
