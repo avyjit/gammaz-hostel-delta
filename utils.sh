@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-detailsfile="sysad-task1-studentDetails.txt"
+detailsfile="./data/sysad-task1-studentDetails.txt"
 
 getRowByRollNo() {
     # Filters the input file by rollno
@@ -51,7 +51,3 @@ getMonth() {
         12) echo "Dec" ;;
     esac
 }
-
-getDept 112122021
-getYear
-getMonth
