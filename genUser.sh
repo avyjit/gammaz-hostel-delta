@@ -11,10 +11,13 @@ if [ -z $detailsfile ]; then
     detailsfile="./data/testdata.txt"
 fi
 
+# Create the HAD account
+sudo useradd -d /home/HAD -m HAD
 
 
+# Create hostel accounts
 for hostelname in GarnetA GarnetB Agate Opal; do 
-    echo "$hostelname"
+    sudo useradd -d /home/$hostelname -m $hostelname
 done
 
 while read -r -a line; do
@@ -28,5 +31,5 @@ while read -r -a line; do
     year=$(getYear)
     month=$(getMonth)
 
-    echo "$name $rollno $dept $year $hostel $mess $month $messpref"
+    # echo "$name $rollno $dept $year $hostel $mess $month $messpref"
 done <<< "$(skipFirstLine $detailsfile)"
