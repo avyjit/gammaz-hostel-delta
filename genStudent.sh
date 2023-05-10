@@ -22,6 +22,9 @@ for hostelname in GarnetA GarnetB Agate Opal; do
 
     sudo touch /home/$hostelname/announcements.txt
     sudo touch /home/$hostelname/feeDefaulters.txt
+
+    sudo chown $hostelname /home/$hostelname/announcements.txt
+    sudo chown $hostelname /home/$hostelname/feeDefaulters.txt
 done
 
 while read -r -a line; do
