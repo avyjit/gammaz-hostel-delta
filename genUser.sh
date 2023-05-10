@@ -11,6 +11,12 @@ if [ -z $detailsfile ]; then
     detailsfile="./data/testdata.txt"
 fi
 
+
+
+for hostelname in GarnetA GarnetB Agate Opal; do 
+    echo "$hostelname"
+done
+
 while read -r -a line; do
     name=${line[0]}
     rollno=${line[1]}
@@ -20,6 +26,7 @@ while read -r -a line; do
     messpref=${line[5]}
     dept=$(getDept $rollno)
     year=$(getYear)
+    month=$(getMonth)
 
-    echo "$name ($rollno) is a $dept student of $hostel"
+    echo "$name $rollno $dept $year $hostel $mess $month $messpref"
 done <<< "$(skipFirstLine $detailsfile)"
