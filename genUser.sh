@@ -17,6 +17,7 @@ sudo useradd -d /home/HAD -m HAD
 
 # Create hostel accounts
 for hostelname in GarnetA GarnetB Agate Opal; do 
+    sudo groupadd ${hostelname}Student 
     sudo useradd -d /home/$hostelname -m $hostelname
 done
 
@@ -31,5 +32,12 @@ while read -r -a line; do
     year=$(getYear)
     month=$(getMonth)
 
-    # echo "$name $rollno $dept $year $hostel $mess $month $messpref"
+    sudo useradd -d /home/$hostel/$room/$name -m $name
+    usermod -a -G ${hostel}Student $name
+
+    sudo touch /home/$hostel/$room/$name/userDetails.txt
+   	sudo touch /home/$hostel/$room/$name/fees.txt	
+
+    echo "Name RollNumber Dept Year Hostel AllocatedMess Month MessPref" | sudo tee -a /home/$hostel/$room/$name/userDetails.txt > /dev/null
+    echo "$name $rollno $dept $year $hostel $mess $month $messpref" | sudo tee -a /home/$hostel/$room/$name/userDetails.txt > /dev/null
 done <<< "$(skipFirstLine $detailsfile)"
