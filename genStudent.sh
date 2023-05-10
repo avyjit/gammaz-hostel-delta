@@ -19,6 +19,9 @@ sudo useradd -d /home/HAD -m HAD
 for hostelname in GarnetA GarnetB Agate Opal; do 
     sudo groupadd ${hostelname}Student 
     sudo useradd -d /home/$hostelname -m $hostelname
+
+    sudo touch /home/$hostelname/announcements.txt
+    sudo touch /home/$hostelname/feeDefaulters.txt
 done
 
 while read -r -a line; do
