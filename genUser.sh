@@ -8,7 +8,7 @@ detailsfile=$1
 # If no argument is passed, use the default
 # student details file
 if [ -z $detailsfile ]; then
-    detailsfile="./data/sysad-task1-studentDetails.txt"
+    detailsfile="./data/testdata.txt"
 fi
 
 while read -r -a line; do
