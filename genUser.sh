@@ -21,5 +21,5 @@ while read -r -a line; do
     dept=$(getDept $rollno)
     year=$(getYear)
 
-    echo "$name ($rollno) is a $dept student of $hostel hostel."
+    echo "$name ($rollno) is a $dept student of $hostel"
 done <<< "$(skipFirstLine $detailsfile)"
