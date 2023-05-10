@@ -41,6 +41,8 @@ while read -r -a line; do
     sudo useradd -d /home/$hostel/$room/$name -m $name
     usermod -a -G ${hostel}Student $name
 
+    sudo chown $name /home/$hostel/$room/$name
+
     sudo touch /home/$hostel/$room/$name/userDetails.txt
    	sudo touch /home/$hostel/$room/$name/fees.txt	
 
