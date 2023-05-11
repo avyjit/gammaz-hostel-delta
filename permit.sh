@@ -6,7 +6,7 @@ for hostelname in GarnetA GarnetB Agate Opal; do
     sudo setfacl -Rm HAD:rwx /home/$hostelname
 
     # The respective warden can access only their hostel
-    sudo setfacl -Rm $hostelname /home/$hostelname
+    sudo setfacl -Rm $hostelname:rwx /home/$hostelname
 
     # Give read access to hostel students only to the important files
     sudo setfacl -m g:${hostelname}Student:r-x /home/$hostelname
