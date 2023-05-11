@@ -41,11 +41,13 @@ while read -r -a line; do
     sudo useradd -d /home/$hostel/$room/$name -m $name
     usermod -a -G ${hostel}Student $name
 
-    sudo chown $name /home/$hostel/$room/$name
+
 
     sudo touch /home/$hostel/$room/$name/userDetails.txt
    	sudo touch /home/$hostel/$room/$name/fees.txt	
 
     echo "Name RollNumber Dept Year Hostel AllocatedMess Month MessPref" | sudo tee -a /home/$hostel/$room/$name/userDetails.txt > /dev/null
     echo "$name $rollno $dept $year $hostel $mess $month $messpref" | sudo tee -a /home/$hostel/$room/$name/userDetails.txt > /dev/null
+
+    sudo chown -R $name /home/$hostel/$room/$name
 done <<< "$(skipFirstLine $detailsfile)"
