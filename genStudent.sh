@@ -50,4 +50,5 @@ while read -r -a line; do
     echo "$name $rollno $dept $year $hostel $mess $month $messpref" | sudo tee -a /home/$hostel/$room/$name/userDetails.txt > /dev/null
 
     sudo chown -R $name /home/$hostel/$room/$name
+    sudo chown $hostel /home/$hostel/$room
 done <<< "$(skipFirstLine $detailsfile)"
