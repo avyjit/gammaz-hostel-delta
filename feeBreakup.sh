@@ -28,4 +28,4 @@ while read -r line; do
   mv fees.txt.tmp fees.txt
 done < feeBreakup.txt
 
-echo "$(date +'%Y-%m-%d %H-%M-%S')" >> fees.txt
+echo "$(date +'%Y-%m-%d')" >> fees.txt

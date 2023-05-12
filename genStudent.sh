@@ -23,9 +23,10 @@ for hostelname in GarnetA GarnetB Agate Opal; do
 
     sudo touch /home/$hostelname/announcements.txt
     sudo touch /home/$hostelname/feeDefaulters.txt
+    sudo cp ./updateDefaulter.sh /home/$hostelname/updateDefaulter.sh
 
-    sudo chown $hostelname /home/$hostelname/announcements.txt
-    sudo chown $hostelname /home/$hostelname/feeDefaulters.txt
+    sudo chown -R $hostelname /home/$hostelname
+    chmod +x /home/$hostelname/*.sh
 done
 
 while read -r -a line; do
@@ -45,6 +46,7 @@ while read -r -a line; do
 
     sudo cp ./data/feeBreakup.txt /home/$hostel/$room/$name/feeBreakup.txt
 
+
     sudo touch /home/$hostel/$room/$name/userDetails.txt
     echo "Name RollNumber Dept Year Hostel AllocatedMess Month MessPref" | sudo tee -a /home/$hostel/$room/$name/userDetails.txt > /dev/null
     echo "$name $rollno $dept $year $hostel $mess $month $messpref" | sudo tee -a /home/$hostel/$room/$name/userDetails.txt > /dev/null
@@ -58,5 +60,5 @@ while read -r -a line; do
     sudo chown -R $name /home/$hostel/$room/$name
     sudo chown $hostel /home/$hostel/$room
     sudo chmod +x /home/$hostel/$room/$name/*.sh
-    
+
 done <<< "$(skipFirstLine $detailsfile)"
