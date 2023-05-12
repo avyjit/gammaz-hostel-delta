@@ -13,7 +13,8 @@ fi
 
 # Create the HAD account
 sudo useradd -d /home/HAD -m HAD
-
+sudo cp ./data/mess.txt /home/HAD/mess.txt
+sudo chown HAD /home/HAD/mess.txt
 
 # Create hostel accounts
 for hostelname in GarnetA GarnetB Agate Opal; do 
@@ -42,13 +43,20 @@ while read -r -a line; do
     usermod -a -G ${hostel}Student $name
 
 
+    sudo cp ./data/feeBreakup.txt /home/$hostel/$room/$name/feeBreakup.txt
 
     sudo touch /home/$hostel/$room/$name/userDetails.txt
-   	sudo touch /home/$hostel/$room/$name/fees.txt	
-
     echo "Name RollNumber Dept Year Hostel AllocatedMess Month MessPref" | sudo tee -a /home/$hostel/$room/$name/userDetails.txt > /dev/null
     echo "$name $rollno $dept $year $hostel $mess $month $messpref" | sudo tee -a /home/$hostel/$room/$name/userDetails.txt > /dev/null
 
+   	sudo touch /home/$hostel/$room/$name/fees.txt	
+    sudo awk '{print $1" 0"}' ./data/feeBreakup.txt > /home/$hostel/$room/$name/fees.txt
+    echo "---" | sudo tee -a /home/$hostel/$room/$name/fees.txt > /dev/null
+    
+    sudo cp ./feeBreakup.sh /home/$hostel/$room/$name/feeBreakup.sh
+
     sudo chown -R $name /home/$hostel/$room/$name
     sudo chown $hostel /home/$hostel/$room
+    sudo chmod +x /home/$hostel/$room/$name/*.sh
+    
 done <<< "$(skipFirstLine $detailsfile)"

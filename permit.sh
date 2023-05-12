@@ -20,4 +20,8 @@ for hostelname in GarnetA GarnetB Agate Opal; do
             setfacl -m g:${hostelname}Student:r-x $d
         fi
     done
+
+    # Give students write access to mess.txt inside HAD
+    sudo setfacl -m g:${hostelname}Student:r-x /home/HAD
+    sudo setfacl -m g:${hostelname}Student:-w- /home/HAD/mess.txt
 done
