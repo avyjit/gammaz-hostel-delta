@@ -56,6 +56,7 @@ while read -r -a line; do
     echo "---" | sudo tee -a /home/$hostel/$room/$name/fees.txt > /dev/null
     
     sudo cp ./feeBreakup.sh /home/$hostel/$room/$name/feeBreakup.sh
+    sudo cp ./messAllocation.sh /home/$hostel/$room/$name/messAllocation.sh
 
     sudo chown -R $name /home/$hostel/$room/$name
     sudo chown $hostel /home/$hostel/$room
