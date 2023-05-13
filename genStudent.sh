@@ -17,8 +17,8 @@ sudo cp ./data/mess.txt /home/HAD/mess.txt
 sudo chown HAD /home/HAD/mess.txt
 
 # Create hostel accounts
-for hostelname in GarnetA GarnetB Agate Opal; do 
-    sudo groupadd ${hostelname}Student 
+for hostelname in GarnetA GarnetB Agate Opal; do
+    sudo groupadd ${hostelname}Student
     sudo useradd -d /home/$hostelname -m $hostelname
 
     sudo touch /home/$hostelname/announcements.txt
@@ -43,18 +43,16 @@ while read -r -a line; do
     sudo useradd -d /home/$hostel/$room/$name -m $name
     usermod -a -G ${hostel}Student $name
 
-
     sudo cp ./data/feeBreakup.txt /home/$hostel/$room/$name/feeBreakup.txt
 
-
     sudo touch /home/$hostel/$room/$name/userDetails.txt
-    echo "Name RollNumber Dept Year Hostel AllocatedMess Month MessPref" | sudo tee -a /home/$hostel/$room/$name/userDetails.txt > /dev/null
-    echo "$name $rollno $dept $year $hostel $mess $month $messpref" | sudo tee -a /home/$hostel/$room/$name/userDetails.txt > /dev/null
+    echo "Name RollNumber Dept Year Hostel AllocatedMess Month MessPref" | sudo tee -a /home/$hostel/$room/$name/userDetails.txt >/dev/null
+    echo "$name $rollno $dept $year $hostel $mess $month $messpref" | sudo tee -a /home/$hostel/$room/$name/userDetails.txt >/dev/null
 
-   	sudo touch /home/$hostel/$room/$name/fees.txt	
-    sudo awk '{print $1" 0"}' ./data/feeBreakup.txt > /home/$hostel/$room/$name/fees.txt
-    echo "---" | sudo tee -a /home/$hostel/$room/$name/fees.txt > /dev/null
-    
+    sudo touch /home/$hostel/$room/$name/fees.txt
+    sudo awk '{print $1" 0"}' ./data/feeBreakup.txt >/home/$hostel/$room/$name/fees.txt
+    echo "---" | sudo tee -a /home/$hostel/$room/$name/fees.txt >/dev/null
+
     sudo cp ./feeBreakup.sh /home/$hostel/$room/$name/feeBreakup.sh
     sudo cp ./messAllocation.sh /home/$hostel/$room/$name/messAllocation.sh
 
@@ -62,4 +60,7 @@ while read -r -a line; do
     sudo chown $hostel /home/$hostel/$room
     sudo chmod +x /home/$hostel/$room/$name/*.sh
 
-done <<< "$(skipFirstLine $detailsfile)"
+    # ONLY FOR DEBUG PURPOSES
+    echo "$name:0" | sudo chpasswd
+
+done <<<"$(skipFirstLine $detailsfile)"
