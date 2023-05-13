@@ -14,7 +14,12 @@ fi
 # Create the HAD account
 sudo useradd -d /home/HAD -m HAD
 sudo cp ./data/mess.txt /home/HAD/mess.txt
+sudo cp ./messAllocation.sh /home/HAD/messAllocation.sh
 sudo chown HAD /home/HAD/mess.txt
+sudo chmod +x *.sh
+
+# DEBUG ONLY
+echo "HAD:0" | sudo chpasswd
 
 # Create hostel accounts
 for hostelname in GarnetA GarnetB Agate Opal; do
@@ -27,6 +32,9 @@ for hostelname in GarnetA GarnetB Agate Opal; do
 
     sudo chown -R $hostelname /home/$hostelname
     chmod +x /home/$hostelname/*.sh
+
+    # DEBUG ONLY
+    echo "$hostelname:0" | sudo chpasswd
 done
 
 while read -r -a line; do
