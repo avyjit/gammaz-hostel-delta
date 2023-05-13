@@ -12,7 +12,7 @@ if [ -z $detailsfile ]; then
 fi
 
 # Create the HAD account
-sudo useradd -d /home/HAD -m HAD
+sudo useradd -s /bin/bash -d /home/HAD -m HAD
 sudo cp ./data/mess.txt /home/HAD/mess.txt
 sudo cp ./messAllocation.sh /home/HAD/messAllocation.sh
 sudo chown HAD /home/HAD/mess.txt
@@ -24,7 +24,7 @@ echo "HAD:0" | sudo chpasswd
 # Create hostel accounts
 for hostelname in GarnetA GarnetB Agate Opal; do
     sudo groupadd ${hostelname}Student
-    sudo useradd -d /home/$hostelname -m $hostelname
+    sudo useradd -s /bin/bash -d /home/$hostelname -m $hostelname
 
     sudo touch /home/$hostelname/announcements.txt
     sudo touch /home/$hostelname/feeDefaulters.txt
@@ -48,7 +48,7 @@ while read -r -a line; do
     year=$(getYear)
     month=$(getMonth)
 
-    sudo useradd -d /home/$hostel/$room/$name -m $name
+    sudo useradd -s /bin/bash -d /home/$hostel/$room/$name -m $name
     usermod -a -G ${hostel}Student $name
 
     sudo cp ./data/feeBreakup.txt /home/$hostel/$room/$name/feeBreakup.txt
