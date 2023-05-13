@@ -2,9 +2,9 @@ Delta Task - Gamma Z Hostel and Mess Management Server
 ======================================================
 
 TODO:
-[] genStudent
-[] permit
-[] updateDefaulter
-[] messAllocation
-[] feeBreakup
-[] signOut
+[x] genStudent
+[x] permit
+[x] updateDefaulter
+[x] messAllocation
+[x] feeBreakup
+[ ] signOut
