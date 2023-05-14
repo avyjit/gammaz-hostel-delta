@@ -17,4 +17,4 @@ TODO:
 - [x] updateDefaulter
 - [x] messAllocation
 - [x] feeBreakup
-- [ ] signOut
+- [x] signOut
