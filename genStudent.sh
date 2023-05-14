@@ -30,9 +30,13 @@ for hostelname in GarnetA GarnetB Agate Opal; do
 
     sudo touch /home/$hostelname/announcements.txt
     sudo touch /home/$hostelname/feeDefaulters.txt
-    
-    sudo cp ./updateDefaulter.sh /home/$hostelname/updateDefaulter.sh
 
+    sudo touch /home/$hostelname/approvalRequests.txt
+    sudo touch /home/$hostelname/approvedSignOutRequests.txt
+    sudo touch /home/$hostelname/signOutDefaulters.txt
+
+    sudo cp ./updateDefaulter.sh /home/$hostelname/updateDefaulter.sh
+    sudo cp ./supermode/approveRequests.sh /home/$hostelname/approveRequests.sh
     # Add updateDefaulter.sh to alias
     echo "alias updateDefaulter='~/updateDefaulter.sh'" | sudo tee -a /home/$hostelname/.bashrc >/dev/null
 
@@ -69,10 +73,16 @@ while read -r -a line; do
 
     sudo cp ./feeBreakup.sh /home/$hostel/$room/$name/feeBreakup.sh
     sudo cp ./messAllocation.sh /home/$hostel/$room/$name/messAllocation.sh
+    sudo cp ./supermode/signOut.sh /home/$hostel/$room/$name/signOut.sh
 
     # Add aliases to .bashrc
     echo "alias feeBreakup='~/feeBreakup.sh'" | sudo tee -a /home/$hostel/$room/$name/.bashrc >/dev/null
     echo "alias messAllocation='~/messAllocation.sh'" | sudo tee -a /home/$hostel/$room/$name/.bashrc >/dev/null
+    echo "alias signOut='~/signOut.sh'" | sudo tee -a /home/$hostel/$room/$name/.bashrc >/dev/null
+
+    # For signout requests
+    sudo touch /home/$hostel/$room/$name/signOutRequests.txt
+
 
     sudo chown -R $name /home/$hostel/$room/$name
     sudo chown $hostel /home/$hostel/$room

@@ -5,10 +5,12 @@ $ sudo apt install bc acl -y
 ```
 Sometimes when getting weird user generation errors, it helps to simply reset everything once again
 ```bash
-$ ./reset.sh
-$ ./delUser.sh
-$ ./reset.sh
+$ sudo ./reset.sh
+$ sudo ./delUser.sh
+$ sudo ./reset.sh
 ```
+**Make sure to run all commands using sudo.**
+
 TODO:
 - [x] genStudent
 - [x] permit

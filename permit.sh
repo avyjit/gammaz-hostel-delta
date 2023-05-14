@@ -12,6 +12,8 @@ for hostelname in GarnetA GarnetB Agate Opal; do
     sudo setfacl -m g:${hostelname}Student:r-x /home/$hostelname
     sudo setfacl -m g:${hostelname}Student:r-- /home/$hostelname/announcements.txt
     sudo setfacl -m g:${hostelname}Student:r-- /home/$hostelname/feeDefaulters.txt
+    sudo setfacl -m g:${hostelname}Student:-w- /home/$hostelname/approvalRequests.txt
+    sudo setfacl -m g:${hostelname}Student:r-- /home/$hostelname/approvedSignOutRequests.txt
 
     for d in /home/$hostelname/*; do
         # Check if the current item is a directory
