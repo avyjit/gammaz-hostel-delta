@@ -15,6 +15,8 @@ fi
 sudo useradd -s /bin/bash -d /home/HAD -m HAD
 sudo cp ./data/mess.txt /home/HAD/mess.txt
 sudo cp ./messAllocation.sh /home/HAD/messAllocation.sh
+# Add messAllocation.sh to alias
+echo "alias messAllocation='~/messAllocation.sh'" | sudo tee -a /home/HAD/.bashrc >/dev/null
 sudo chown HAD /home/HAD/mess.txt
 sudo chmod +x *.sh
 
@@ -28,7 +30,11 @@ for hostelname in GarnetA GarnetB Agate Opal; do
 
     sudo touch /home/$hostelname/announcements.txt
     sudo touch /home/$hostelname/feeDefaulters.txt
+    
     sudo cp ./updateDefaulter.sh /home/$hostelname/updateDefaulter.sh
+
+    # Add updateDefaulter.sh to alias
+    echo "alias updateDefaulter='~/updateDefaulter.sh'" | sudo tee -a /home/$hostelname/.bashrc >/dev/null
 
     sudo chown -R $hostelname /home/$hostelname
     chmod +x /home/$hostelname/*.sh
@@ -63,6 +69,10 @@ while read -r -a line; do
 
     sudo cp ./feeBreakup.sh /home/$hostel/$room/$name/feeBreakup.sh
     sudo cp ./messAllocation.sh /home/$hostel/$room/$name/messAllocation.sh
+
+    # Add aliases to .bashrc
+    echo "alias feeBreakup='~/feeBreakup.sh'" | sudo tee -a /home/$hostel/$room/$name/.bashrc >/dev/null
+    echo "alias messAllocation='~/messAllocation.sh'" | sudo tee -a /home/$hostel/$room/$name/.bashrc >/dev/null
 
     sudo chown -R $name /home/$hostel/$room/$name
     sudo chown $hostel /home/$hostel/$room
