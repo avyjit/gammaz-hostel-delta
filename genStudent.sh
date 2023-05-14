@@ -40,6 +40,7 @@ for hostelname in GarnetA GarnetB Agate Opal; do
 
     # Add updateDefaulter.sh to alias
     echo "alias updateDefaulter='~/updateDefaulter.sh'" | sudo tee -a /home/$hostelname/.bashrc >/dev/null
+    echo "alias approveRequests='~/approveRequests.sh'" | sudo tee -a /home/$hostelname/.bashrc >/dev/null
 
     sudo chown -R $hostelname /home/$hostelname
     chmod +x /home/$hostelname/*.sh
@@ -81,6 +82,9 @@ while read -r -a line; do
     echo "alias feeBreakup='~/feeBreakup.sh'" | sudo tee -a /home/$hostel/$room/$name/.bashrc >/dev/null
     echo "alias messAllocation='~/messAllocation.sh'" | sudo tee -a /home/$hostel/$room/$name/.bashrc >/dev/null
     echo "alias signOut='~/signOut.sh'" | sudo tee -a /home/$hostel/$room/$name/.bashrc >/dev/null
+
+    # Add checkSignOut.sh to ~/.bashrc for automatic check
+    cat ./supermode/checkSignOut.sh | sudo tee -a /home/$hostel/$room/$name/.bashrc >/dev/null
 
     # For signout requests
     sudo touch /home/$hostel/$room/$name/signOutRequests.txt
