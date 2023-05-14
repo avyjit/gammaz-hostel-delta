@@ -37,6 +37,7 @@ for hostelname in GarnetA GarnetB Agate Opal; do
 
     sudo cp ./updateDefaulter.sh /home/$hostelname/updateDefaulter.sh
     sudo cp ./supermode/approveRequests.sh /home/$hostelname/approveRequests.sh
+
     # Add updateDefaulter.sh to alias
     echo "alias updateDefaulter='~/updateDefaulter.sh'" | sudo tee -a /home/$hostelname/.bashrc >/dev/null
 
@@ -74,6 +75,7 @@ while read -r -a line; do
     sudo cp ./feeBreakup.sh /home/$hostel/$room/$name/feeBreakup.sh
     sudo cp ./messAllocation.sh /home/$hostel/$room/$name/messAllocation.sh
     sudo cp ./supermode/signOut.sh /home/$hostel/$room/$name/signOut.sh
+    sudo cp ./supermode/checkSignOut.sh /home/$hostel/$room/$name/checkSignOut.sh
 
     # Add aliases to .bashrc
     echo "alias feeBreakup='~/feeBreakup.sh'" | sudo tee -a /home/$hostel/$room/$name/.bashrc >/dev/null

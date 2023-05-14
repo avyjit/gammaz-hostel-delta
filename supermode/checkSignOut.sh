@@ -13,16 +13,18 @@ checkSignOut() {
         hostelname=$(tail -1 userDetails.txt | cut -d' ' -f5)
 
         # Check if this is present in the approved requests
-        if grep -q $lastRequest /home/$hostelname/approveSignOutRequests.txt; then
+        if grep -q $lastRequest /home/$hostelname/approvedSignOutRequests.txt; then
             echo "Request was approved!"
         else
             # Add to defaulters
+            echo "Adding to defaulters..."
             echo $lastRequest >> /home/$hostelname/signOutDefaulters.txt
         fi
     else
         echo "No signout requests!"
     fi
 
+    > signOutRequests.txt
 }
 
 checkSignOut
