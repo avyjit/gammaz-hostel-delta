@@ -21,4 +21,4 @@ for student in $(find . -name userDetails.txt); do
 done
 
 sort -k3 paid.tmp.txt | head -n 5 >> announcements.txt
-rm paid.tmp.txt
+rm paid.tmp.txt 
