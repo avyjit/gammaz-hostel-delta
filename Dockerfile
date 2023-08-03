@@ -9,7 +9,6 @@ WORKDIR /scripts
 RUN ./genStudent.sh
 RUN ./permit.sh
 
-USER HAD
 WORKDIR /home/HAD
 
 ENTRYPOINT ["/scripts/entrypoint.sh"]
